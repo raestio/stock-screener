@@ -1,9 +1,9 @@
 package com.rasto.stockscreener.service;
 
-import com.rasto.stockscreener.core.alphavantage.output.StockSearchData;
+import com.rasto.stockscreener.dto.StockSearchDTO;
 
 import java.util.List;
 
 public interface StockSearchService {
-    List<StockSearchData> searchStockByKeyword(String keyword);
+    List<StockSearchDTO> searchStockByKeyword(String keyword);
 }

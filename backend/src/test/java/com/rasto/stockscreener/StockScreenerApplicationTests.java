@@ -1,6 +1,6 @@
 package com.rasto.stockscreener;
 
-import com.rasto.stockscreener.core.alphavantage.output.StockSearchData;
+import com.rasto.stockscreener.dto.StockSearchDTO;
 import com.rasto.stockscreener.service.StockSearchService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,14 +24,20 @@ public class StockScreenerApplicationTests {
 	}
 
 	@Test
-	public void testStockSearchByKeyword() {
-		List<StockSearchData> stockSearchDataList = stockSearchService.searchStockByKeyword("IUSG");
+	public void testStockSearchByKeywordIUSG() {
+		List<StockSearchDTO> stockSearchDataList = stockSearchService.searchStockByKeyword("IUSG");
 		Assert.assertTrue(!stockSearchDataList.isEmpty());
-		StockSearchData stockSearchData = stockSearchDataList.get(0);
+		StockSearchDTO stockSearchData = stockSearchDataList.get(0);
 		Assert.assertEquals(stockSearchData.getName(), "iShares Core S&P US Growth ETF");
 		Assert.assertEquals(stockSearchData.getSymbol(), "IUSG");
 		Assert.assertEquals(stockSearchData.getCurrency(), Currency.getInstance("USD"));
 		Assert.assertEquals(stockSearchData.getTimezone(), "UTC-05");
+	}
+
+	@Test
+	public void testStockSearchByKeywordThatDoesNotExist() {
+		List<StockSearchDTO> stockSearchDataList = stockSearchService.searchStockByKeyword("IUSGafewfeferfERGREGafwefaewfe");
+		Assert.assertTrue(stockSearchDataList.isEmpty());
 	}
 }
 
