@@ -23,6 +23,9 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+	maven {
+		url  "https://dl.bintray.com/patriques82/maven"
+	}
 }
 
 dependencies {
