@@ -24,11 +24,11 @@ public class DataLayerTests {
     @Test
     public void testSaveUserAndRetrieve() {
         User user = new User();
-        user.setUsername("test");
+        user.setUsername("test1");
         user.setPassword("AWefafeawefAWEF");
         user = userRepository.save(user);
         user = userRepository.findById(user.getId()).get();
-        Assert.assertEquals(user.getUsername(), "test");
+        Assert.assertEquals(user.getUsername(), "test1");
         userRepository.deleteById(user.getId());
     }
 

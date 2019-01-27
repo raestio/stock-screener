@@ -8,14 +8,12 @@ import com.rasto.stockscreener.service.UserService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.Currency;
 import java.util.Optional;
 
@@ -32,7 +30,7 @@ public class ServiceLayerTests {
     @Autowired
     private UserRepository userRepository;
 
-    private static final String USERNAME = "test";
+    private static final String USERNAME = "test1";
 
     @Before
     public void setUpUser() {
