@@ -30,7 +30,8 @@ public class StockFavouritesServiceImpl implements StockFavouritesService {
     private ConvertingService convertingService;
 
     @Override
-    public void addStockToFavourites(StockDTO stockDTO, Integer userId) {
+    @Transactional
+    public List<StockDTO> addStockToFavourites(StockDTO stockDTO, Integer userId) {
         User user = userRepository.findById(userId).get();
         Optional<Stock> stockOptional = stockRepository.findById(stockDTO.getSymbol());
         Set<Stock> stockSet = new HashSet<>();
@@ -41,15 +42,17 @@ public class StockFavouritesServiceImpl implements StockFavouritesService {
             stockSet.add(stock);
         }
         user.setFavouriteStocks(stockSet);
-        userRepository.save(user);
+        user = userRepository.save(user);
+        return convertingService.convert(new ArrayList<>(user.getFavouriteStocks()), StockDTO.class);
     }
 
     @Override
     @Transactional
-    public void removeStockFromFavourites(String stockSymbol, Integer userId) {
+    public List<StockDTO> removeStockFromFavourites(String stockSymbol, Integer userId) {
         User user = userRepository.findById(userId).get();
         user.getFavouriteStocks().removeIf(stock -> stock.getSymbol().equals(stockSymbol));
-        userRepository.save(user);
+        user = userRepository.save(user);
+        return convertingService.convert(new ArrayList<>(user.getFavouriteStocks()), StockDTO.class);
     }
 
     @Override
