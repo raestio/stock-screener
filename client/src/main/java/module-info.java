@@ -2,6 +2,6 @@ module stockscreener.main {
     requires javafx.controls;
     requires javafx.fxml;
     
-    opens org.openjfx to javafx.fxml;
-    exports org.openjfx;
+    opens com.rasto to javafx.fxml;
+    exports com.rasto;
 }

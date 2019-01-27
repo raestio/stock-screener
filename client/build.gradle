@@ -11,7 +11,7 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = "$moduleName/org.openjfx.MainApp"
+mainClassName = "$moduleName/com.rasto.MainApp"
 
 def java_home = hasProperty('org.gradle.java.home') ? getProperty('org.gradle.java.home') : System.getenv('JAVA_HOME')
 def fx_jmods = hasProperty('path.to.fx.mods') ? getProperty('path.to.fx.mods') : System.getenv('PATH_TO_FX_MODS')
