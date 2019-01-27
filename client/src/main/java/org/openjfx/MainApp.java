@@ -12,12 +12,12 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("stock_screener.fxml"));
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         
-        stage.setTitle("JavaFX and Gradle");
+        stage.setTitle("Stock Screener");
         stage.setScene(scene);
         stage.show();
     }
