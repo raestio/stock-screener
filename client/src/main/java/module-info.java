@@ -1,4 +1,4 @@
-module hellofx {
+module stockscreener.main {
     requires javafx.controls;
     requires javafx.fxml;
     
