@@ -1,5 +1,5 @@
 package com.rasto.stockscreener.service;
 
 public interface AuthService {
-    void login();
+    boolean login(String username, String password);
 }
