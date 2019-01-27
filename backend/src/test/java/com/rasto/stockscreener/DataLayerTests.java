@@ -29,6 +29,7 @@ public class DataLayerTests {
         user = userRepository.save(user);
         user = userRepository.findById(user.getId()).get();
         Assert.assertEquals(user.getUsername(), "test");
+        userRepository.deleteById(user.getId());
     }
 
     @Test
@@ -39,5 +40,6 @@ public class DataLayerTests {
         stock = stockRepository.save(stock);
         stock = stockRepository.findById(stock.getSymbol()).get();
         Assert.assertEquals(stock.getCurrency(), "USD");
+        stockRepository.deleteById("AAPL");
     }
 }
