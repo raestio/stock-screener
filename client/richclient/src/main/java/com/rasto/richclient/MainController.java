@@ -44,9 +44,10 @@ public class MainController {
         } catch (AuthException e) {
             e.printStackTrace();
         }
-        initializeSearchButton();
+        stockNameLabel.setText("Asdasdasd");
+        /*initializeSearchButton();
         initializeClearButton();
-        initializeStocksListView();
+        initializeStocksListView();*/
     }
 
     private void initializeClearButton() {
