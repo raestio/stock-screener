@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.7214397496087637" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+         <children>
+            <LineChart id="chart" layoutX="4.0" layoutY="143.0" prefHeight="572.0" prefWidth="918.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Label id="stock_name_label" layoutX="331.0" layoutY="33.0" prefHeight="51.0" prefWidth="462.0" text=" iShares">
+               <font>
+                  <Font size="35.0" />
+               </font></Label>
+         </children></AnchorPane>
+    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="356.0">
+         <children>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="718.0" prefWidth="350.0">
+               <children>
+                  <ToolBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="56.0" prefWidth="367.0" VBox.vgrow="ALWAYS">
+                    <items>
+                        <TextField id="search_text_field" prefHeight="32.0" prefWidth="171.0" />
+                      <Button id="search_button" mnemonicParsing="false" prefHeight="31.0" prefWidth="79.0" text="Search">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Button>
+                        <Button id="clear_button" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" text="Clear">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Button>
+                    </items>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ToolBar>
+                  <ListView id="stocks_list_view" prefHeight="663.0" prefWidth="357.0" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
