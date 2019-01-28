@@ -1,6 +1,10 @@
 package com.rasto.stockscreener.restclient;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import com.rasto.stockscreener.model.Stock;
 import com.rasto.stockscreener.model.StockData;
 import com.rasto.stockscreener.model.StockSearch;
@@ -12,6 +16,7 @@ import com.rasto.stockscreener.restclient.core.response.StockSearchResponse;
 import com.rasto.stockscreener.restclient.core.response.StockTimeSeriesResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,6 +31,13 @@ public class StockScreenerRestClientImpl implements StockScreenerRestClient {
 
     public StockScreenerRestClientImpl() {
         restTemplate = new RestTemplate();
+        ObjectMapper objectMapper = new ObjectMapper()
+                .registerModule(new ParameterNamesModule())
+                .registerModule(new Jdk8Module())
+                .registerModule(new JavaTimeModule());
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+        restTemplate.getMessageConverters().add(0, mappingJackson2HttpMessageConverter);
         contextHolder = new ContextHolder();
     }
 

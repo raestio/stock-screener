@@ -6,6 +6,9 @@ plugins {
 dependencies {
     compile project(":stock-screener-model")
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.8'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.9.8'
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-parameter-names', version: '2.9.8'
     compile group: 'org.springframework', name: 'spring-web', version: '5.1.4.RELEASE'
     testCompile 'junit:junit:4.12'
 }
