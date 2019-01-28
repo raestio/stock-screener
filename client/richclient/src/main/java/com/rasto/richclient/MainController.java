@@ -82,7 +82,18 @@ public class MainController {
         initializeSearchButton();
         initializeClearButton();
         initializeStocksListView();
+        initializeChartButtons();
         initializeFavouriteButton();
+    }
+
+    private void initializeChartButtons() {
+        initializeChartButton(daily, TimeSeriesType.DAILY);
+        initializeChartButton(weekly, TimeSeriesType.WEEKLY);
+        initializeChartButton(monthly, TimeSeriesType.MONTHLY);
+    }
+
+    private void initializeChartButton(Button chartButton, TimeSeriesType type) {
+        chartButton.setOnMouseClicked(event -> chartStock(stockCurrentlyInChart, type));
     }
 
     private void initializeFavouriteButton() {
@@ -139,13 +150,19 @@ public class MainController {
 
         stocksListView.setOnMouseClicked(event -> {
             Stock stock = stocksListView.getSelectionModel().getSelectedItem();
-            chartStock(stock, DEFAULT_TIME_SERIES_TYPE);
+            chartStockFromStocksListView(stock, DEFAULT_TIME_SERIES_TYPE);
         });
+    }
+
+    private void chartStockFromStocksListView(Stock stock, TimeSeriesType timeSeriesType) {
+        stockNameLabel.setText(stock.getName());
+        chartStock(stock, timeSeriesType);
+        setDisableChartButtons(false);
+        setFavouriteButtonAccordingToUserFavourites(stock);
     }
 
     private void chartStock(Stock stock, TimeSeriesType timeSeriesType) {
         stockCurrentlyInChart = stock;
-        stockNameLabel.setText(stock.getName());
         List<StockData> stockData = new ArrayList<>();
         try {
             stockData = stockScreenerRestClient.searchStockTimeSeries(stock.getSymbol(), timeSeriesType);
@@ -153,8 +170,6 @@ public class MainController {
             e.printStackTrace();
         }
         fillChart(stockData, timeSeriesType);
-        setDisableChartButtons(false);
-        setFavouriteButtonAccordingToUserFavourites(stock);
     }
 
     private void setFavouriteButtonAccordingToUserFavourites(Stock stock) {
