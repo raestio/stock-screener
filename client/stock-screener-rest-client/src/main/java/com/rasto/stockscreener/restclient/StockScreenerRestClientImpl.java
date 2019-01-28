@@ -12,6 +12,7 @@ import com.rasto.stockscreener.restclient.core.response.StockSearchResponse;
 import com.rasto.stockscreener.restclient.core.response.StockTimeSeriesResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthorizationInterceptor;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class StockScreenerRestClientImpl implements StockScreenerRestClient {
 
-    public static final String SERVER_API_URL = "localhost:8080";
+    public static final String SERVER_API_URL = "http://localhost:8080";
     private ContextHolder contextHolder;
     private RestTemplate restTemplate;
 
@@ -46,16 +47,20 @@ public class StockScreenerRestClientImpl implements StockScreenerRestClient {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(username);
         loginRequest.setPassword(password);
-        ResponseEntity<AuthResponse> authResponseResponseEntity = restTemplate.postForEntity(SERVER_API_URL + "/auth/login", loginRequest, AuthResponse.class);
-        if (authResponseResponseEntity.getStatusCode().is2xxSuccessful()) {
-            User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            contextHolder.setUser(user);
-            restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(username, password));
-            return authResponseResponseEntity.getBody();
-        } else {
-            throw new AuthException(authResponseResponseEntity.getBody().getMessage());
+        try {
+            ResponseEntity<AuthResponse> authResponseResponseEntity = restTemplate.postForEntity(SERVER_API_URL + "/auth/login", loginRequest, AuthResponse.class);
+            if (authResponseResponseEntity.getStatusCode().is2xxSuccessful()) {
+                User user = new User();
+                user.setUsername(username);
+                user.setPassword(password);
+                contextHolder.setUser(user);
+                restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor(username, password));
+                return authResponseResponseEntity.getBody();
+            } else {
+                throw new AuthException(authResponseResponseEntity.getBody().getMessage());
+            }
+        } catch (HttpClientErrorException e) {
+            throw new AuthException();
         }
     }
 

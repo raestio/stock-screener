@@ -11,6 +11,11 @@ public class AuthResponse {
         this.message = message;
     }
 
+    public AuthResponse() {
+
+    }
+
+
     public String getMessage() {
         return message;
     }
