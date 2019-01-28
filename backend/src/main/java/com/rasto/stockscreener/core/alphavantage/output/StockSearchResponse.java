@@ -49,7 +49,11 @@ public class StockSearchResponse {
                 List<Map<String, String>> bestMatchesStrings = GSON.fromJson(rootObject.get(this.getStockSearchResponseKey()), dataType);
                 for (Map<String, String> bestMatch : bestMatchesStrings) {
                     StockSearchData stockSearchData = new StockSearchData();
-                    stockSearchData.setCurrency(Currency.getInstance(bestMatch.get(KEY_CURRENCY)));
+                    try {
+                        stockSearchData.setCurrency(Currency.getInstance(bestMatch.get(KEY_CURRENCY)));
+                    } catch (Exception e) {
+                        stockSearchData.setCurrency(Currency.getInstance("USD")); //TODO FIX CURRENCY CONVERSION
+                    }
                     stockSearchData.setMarketClose(LocalTime.parse(bestMatch.get(KEY_MARKETCLOSE)));
                     stockSearchData.setMarketOpen(LocalTime.parse(bestMatch.get(KEY_MARKETOPEN)));
                     stockSearchData.setMatchScore(Double.parseDouble(bestMatch.get(KEY_MATCHSCORE)));

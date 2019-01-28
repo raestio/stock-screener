@@ -67,6 +67,7 @@ public class MainController {
     @FXML
     public LineChart<String, Number> chart;
     public static final TimeSeriesType DEFAULT_TIME_SERIES_TYPE = TimeSeriesType.DAILY;
+    public static final int DEFAULT_ITEMS_ON_XAXIS = 10;
 
     private StockScreenerRestClient stockScreenerRestClient;
 
@@ -84,6 +85,7 @@ public class MainController {
         initializeStocksListView();
         initializeChartButtons();
         initializeFavouriteButton();
+        fillListWithFavourites();
     }
 
     private void initializeChartButtons() {
@@ -101,8 +103,10 @@ public class MainController {
             try {
                 if (favourite.getText().equals(ADD_TO_FAVOURITES)) {
                     stockScreenerRestClient.addToFavourites(stockCurrentlyInChart);
+                    favourite.setText(REMOVE_FROM_FAVOURITES);
                 } else if (favourite.getText().equals(REMOVE_FROM_FAVOURITES)) {
                     stockScreenerRestClient.removeFromFavourites(stockCurrentlyInChart.getSymbol());
+                    favourite.setText(ADD_TO_FAVOURITES);
                 }
             } catch (UserNotLoggedInException e) {
                 e.printStackTrace();
@@ -124,6 +128,7 @@ public class MainController {
 
     private void clearStocksList() {
         stocksListView.getItems().clear();
+        stocksListView.setItems(FXCollections.observableArrayList());
     }
 
     private void fillListWithFavourites() {
@@ -144,13 +149,17 @@ public class MainController {
                 super.updateItem(item, empty);
                 if (!empty) {
                     setText(item.getSymbol() + " - " + item.getName());
+                } else {
+                    setText("");
                 }
             }
         });
 
         stocksListView.setOnMouseClicked(event -> {
             Stock stock = stocksListView.getSelectionModel().getSelectedItem();
-            chartStockFromStocksListView(stock, DEFAULT_TIME_SERIES_TYPE);
+            if (stock != null) {
+                chartStockFromStocksListView(stock, DEFAULT_TIME_SERIES_TYPE);
+            }
         });
     }
 
@@ -158,6 +167,7 @@ public class MainController {
         stockNameLabel.setText(stock.getName());
         chartStock(stock, timeSeriesType);
         setDisableChartButtons(false);
+        favourite.setDisable(false);
         setFavouriteButtonAccordingToUserFavourites(stock);
     }
 
@@ -165,10 +175,12 @@ public class MainController {
         stockCurrentlyInChart = stock;
         List<StockData> stockData = new ArrayList<>();
         try {
-            stockData = stockScreenerRestClient.searchStockTimeSeries(stock.getSymbol(), timeSeriesType);
+            stockData = stockScreenerRestClient.searchStockTimeSeries(stock.getSymbol(), timeSeriesType).subList(0, DEFAULT_ITEMS_ON_XAXIS);
         } catch (UserNotLoggedInException e) {
             e.printStackTrace();
         }
+        yAxis.setForceZeroInRange(false);
+        xAxis.setAnimated(false);
         fillChart(stockData, timeSeriesType);
     }
 
@@ -176,10 +188,8 @@ public class MainController {
         try {
             if (isFavourite(stock)) {
                 favourite.setText(REMOVE_FROM_FAVOURITES);
-                favourite.setDisable(false);
             } else {
                 favourite.setText(ADD_TO_FAVOURITES);
-                favourite.setDisable(true);
             }
         } catch (UserNotLoggedInException e) {
             e.printStackTrace();
@@ -188,7 +198,7 @@ public class MainController {
     }
 
     private boolean isFavourite(Stock stock) throws UserNotLoggedInException {
-        return stockScreenerRestClient.getFavourites().stream().anyMatch(s -> s.getSymbol().equals(stock));
+        return stockScreenerRestClient.getFavourites().stream().anyMatch(s -> s.getSymbol().equals(stock.getSymbol()));
     }
 
     private void fillChart(List<StockData> stockData, TimeSeriesType timeSeriesType) {
