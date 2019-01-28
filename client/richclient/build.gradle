@@ -3,6 +3,10 @@ plugins {
   id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
+dependencies {
+    implementation project(':stock-screener-rest-client')
+}
+
 javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }

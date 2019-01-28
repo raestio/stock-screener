@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-
+    implementation project(':stock-screener-model')
 }
 
 ext.moduleName = 'stockscreener.restclient'
