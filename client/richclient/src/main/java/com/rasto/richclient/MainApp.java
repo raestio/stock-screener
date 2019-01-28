@@ -8,15 +8,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.net.URL;
+
 
 public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("stock_screener.fxml"));
-        TestClient testClient;
+        URL url = new File("richclient/src/main/resources/stock_screener.fxml").toURL();
+        Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        //scene.getStylesheets().add(new File("richclient/src/main/resources/styles.css").toURL().toExternalForm());
         
         stage.setTitle("Stock Screener");
         stage.setScene(scene);

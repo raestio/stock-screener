@@ -1,4 +1,3 @@
 rootProject.name = 'stock-screener-client'
 include 'richclient'
 include 'stock-screener-rest-client'
-include 'stock-screener-model'
