@@ -58,7 +58,9 @@ public class MainController {
             @Override
             protected void updateItem(Stock item, boolean empty) {
                 super.updateItem(item, empty);
-                setText(item.getSymbol() + " - " + item.getName());
+                if (!empty) {
+                    setText(item.getSymbol() + " - " + item.getName());
+                }
             }
         });
     }

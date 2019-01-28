@@ -25,7 +25,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <Label fx:id="stockNameLabel" layoutX="331.0" layoutY="33.0" prefHeight="51.0" prefWidth="462.0" text=" iShares">
+            <Label fx:id="stockNameLabel" layoutX="331.0" layoutY="33.0" prefHeight="51.0" prefWidth="462.0">
                <font>
                   <Font size="35.0" />
                </font></Label>
