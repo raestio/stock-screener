@@ -1,0 +1,9 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+
+}
+
+ext.moduleName = 'stockscreener.model'

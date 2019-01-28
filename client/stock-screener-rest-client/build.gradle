@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+
+}
+
+ext.moduleName = 'stockscreener.restclient'
+
