@@ -9,4 +9,5 @@ module stockscreener.restclient {
     requires java.sql;
     exports com.rasto.stockscreener.restclient;
     exports com.rasto.stockscreener.restclient.core.request;
+    exports com.rasto.stockscreener.restclient.core.response;
 }
