@@ -1,16 +1,12 @@
 package com.rasto.richclient;
 
-import com.rasto.stockscreener.restclient.TestClient;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.URL;
 
 
@@ -22,7 +18,6 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         //scene.getStylesheets().add(new File("richclient/src/main/resources/styles.css").toURL().toExternalForm());
-        
         stage.setTitle("Stock Screener");
         stage.setScene(scene);
         stage.show();

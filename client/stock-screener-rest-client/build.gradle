@@ -4,6 +4,9 @@ plugins {
 }
 
 dependencies {
+    compile project(":stock-screener-model")
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'org.springframework', name: 'spring-web', version: '5.1.4.RELEASE'
 }
 
 javaModule.name = 'stockscreener.restclient'
