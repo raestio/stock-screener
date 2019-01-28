@@ -22,6 +22,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +68,7 @@ public class MainController {
     @FXML
     public LineChart<String, Number> chart;
     public static final TimeSeriesType DEFAULT_TIME_SERIES_TYPE = TimeSeriesType.DAILY;
-    public static final int DEFAULT_ITEMS_ON_XAXIS = 10;
+    public static final int DEFAULT_ITEMS_ON_XAXIS = 40;
 
     private StockScreenerRestClient stockScreenerRestClient;
 
@@ -176,6 +177,7 @@ public class MainController {
         List<StockData> stockData = new ArrayList<>();
         try {
             stockData = stockScreenerRestClient.searchStockTimeSeries(stock.getSymbol(), timeSeriesType).subList(0, DEFAULT_ITEMS_ON_XAXIS);
+            Collections.reverse(stockData);
         } catch (UserNotLoggedInException e) {
             e.printStackTrace();
         }
