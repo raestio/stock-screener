@@ -1,4 +1,4 @@
-package com.rasto;
+package com.rasto.richclient;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;

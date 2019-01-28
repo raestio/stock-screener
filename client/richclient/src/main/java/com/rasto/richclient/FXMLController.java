@@ -1,4 +1,4 @@
-package com.rasto;
+package com.rasto.richclient;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

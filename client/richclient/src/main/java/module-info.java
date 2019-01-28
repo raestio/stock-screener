@@ -1,7 +1,7 @@
-module stockscreener.main {
+module stockscreener.richclient {
     requires javafx.controls;
     requires javafx.fxml;
     
-    opens com.rasto to javafx.fxml;
-    exports com.rasto;
+    opens com.rasto.richclient to javafx.fxml;
+    exports com.rasto.richclient;
 }
