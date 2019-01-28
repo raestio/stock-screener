@@ -10,7 +10,7 @@ import java.io.File;
 import java.net.URL;
 
 
-public class MainApp extends Application {
+public class StockScreenerClientApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
