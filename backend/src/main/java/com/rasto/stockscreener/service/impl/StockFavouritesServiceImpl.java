@@ -34,14 +34,13 @@ public class StockFavouritesServiceImpl implements StockFavouritesService {
     public List<StockDTO> addStockToFavourites(StockDTO stockDTO, Integer userId) {
         User user = userRepository.findById(userId).get();
         Optional<Stock> stockOptional = stockRepository.findById(stockDTO.getSymbol());
-        Set<Stock> stockSet = new HashSet<>();
+        Stock stock;
         if (stockOptional.isPresent()) {
-            stockSet.add(stockOptional.get());
+            stock = stockOptional.get();
         } else {
-            Stock stock = convertingService.convert(stockDTO, Stock.class);
-            stockSet.add(stock);
+            stock = convertingService.convert(stockDTO, Stock.class);
         }
-        user.setFavouriteStocks(stockSet);
+        user.getFavouriteStocks().add(stock);
         user = userRepository.save(user);
         return convertingService.convert(new ArrayList<>(user.getFavouriteStocks()), StockDTO.class);
     }
