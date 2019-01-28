@@ -176,8 +176,10 @@ public class MainController {
         try {
             if (isFavourite(stock)) {
                 favourite.setText(REMOVE_FROM_FAVOURITES);
+                favourite.setDisable(false);
             } else {
                 favourite.setText(ADD_TO_FAVOURITES);
+                favourite.setDisable(true);
             }
         } catch (UserNotLoggedInException e) {
             e.printStackTrace();
