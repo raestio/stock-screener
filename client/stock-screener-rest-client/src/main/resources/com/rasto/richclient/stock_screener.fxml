@@ -25,7 +25,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <Label id="stock_name_label" layoutX="331.0" layoutY="33.0" prefHeight="51.0" prefWidth="462.0" text=" iShares">
+            <Label id="stockNameLabel" layoutX="331.0" layoutY="33.0" prefHeight="51.0" prefWidth="462.0" text=" iShares">
                <font>
                   <Font size="35.0" />
                </font></Label>
@@ -36,13 +36,13 @@
                <children>
                   <ToolBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="56.0" prefWidth="367.0" VBox.vgrow="ALWAYS">
                     <items>
-                        <TextField id="search_text_field" prefHeight="32.0" prefWidth="171.0" />
+                        <TextField id="searchTextField" prefHeight="32.0" prefWidth="171.0" />
                       <Button id="searchButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="79.0" text="Search">
                            <font>
                               <Font size="9.0" />
                            </font>
                         </Button>
-                        <Button id="clear_button" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" text="Clear">
+                        <Button id="clearButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" text="Clear">
                            <font>
                               <Font size="9.0" />
                            </font>
@@ -52,7 +52,7 @@
                         <Insets />
                      </VBox.margin>
                   </ToolBar>
-                  <ListView id="stocks_list_view" prefHeight="663.0" prefWidth="357.0" />
+                  <ListView id="stocksListView" prefHeight="663.0" prefWidth="357.0" />
                </children>
             </VBox>
          </children></AnchorPane>
