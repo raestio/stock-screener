@@ -6,11 +6,11 @@
   <parent>
     <groupId>stock-screener-client</groupId>
     <artifactId>client-all</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>richclient</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>bundle</packaging>
 
   <build>
@@ -20,7 +20,7 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <Bundle-Activator>biapj.richclient.Activator</Bundle-Activator>
+            <Bundle-Activator>com.rasto.richclient.Activator</Bundle-Activator>
           </instructions>
         </configuration>
       </plugin>
@@ -31,13 +31,7 @@
     <dependency>
       <groupId>stock-screener-client</groupId>
       <artifactId>stock-screener-rest-client</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>stock-screener-client</groupId>
-      <artifactId>stock-screener-model</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
