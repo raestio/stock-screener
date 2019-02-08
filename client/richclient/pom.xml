@@ -20,7 +20,11 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <Bundle-Activator>com.rasto.richclient.Activator</Bundle-Activator>
+            <Bundle-Activator>com.rasto.richclient.StockScreenerClientApp</Bundle-Activator>
+            <Import-Package>
+              !com.rasto.stockscreener.restclient.*,org.osgi.framework,javafx.*
+            </Import-Package>
+            <Require-Capability>osgi.ee</Require-Capability>
           </instructions>
         </configuration>
       </plugin>
@@ -29,10 +33,17 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>1.4.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
       <groupId>stock-screener-client</groupId>
       <artifactId>stock-screener-rest-client</artifactId>
       <version>1.0.0</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

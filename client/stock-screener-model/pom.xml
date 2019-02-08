@@ -20,7 +20,15 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
+            <Bundle-Activator>com.rasto.stockscreener.model.Activator</Bundle-Activator>
             <Export-Package >com.rasto.stockscreener.model</Export-Package>
+            <Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency>
+            <Embed-Directory>lib</Embed-Directory>
+            <Embed-StripGroup>true</Embed-StripGroup>
+            <Require-Capability>osgi.ee</Require-Capability>
+            <Import-Package>
+              !com.fasterxml.*,org.osgi.framework
+            </Import-Package>
           </instructions>
         </configuration>
       </plugin>
@@ -28,6 +36,14 @@
   </build>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>1.4.0</version>
+      <scope>provided</scope>
+    </dependency>
+
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>

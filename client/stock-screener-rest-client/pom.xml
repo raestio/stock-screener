@@ -20,9 +20,14 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
+            <Bundle-Activator>com.rasto.stockscreener.restclient.Activator</Bundle-Activator>
             <Export-Package>com.rasto.stockscreener.restclient</Export-Package>
             <Export-Package>com.rasto.stockscreener.restclient.core.request</Export-Package>
             <Export-Package>com.rasto.stockscreener.restclient.core.response</Export-Package>
+            <Require-Capability>osgi.ee</Require-Capability>
+            <Import-Package>
+              !com.fasterxml.*,org.osgi.framework
+            </Import-Package>
           </instructions>
         </configuration>
       </plugin>
@@ -41,7 +46,7 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.9.8</version>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>

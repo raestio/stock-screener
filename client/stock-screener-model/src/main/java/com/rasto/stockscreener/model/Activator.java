@@ -1,4 +1,4 @@
-package com.rasto.richclient;
+package com.rasto.stockscreener.model;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -13,12 +13,11 @@ public class Activator implements BundleActivator {
 
     @Override
     public void start(BundleContext bundleContext) throws Exception {
-        LOG.info("Richclient starts");
-        StockScreenerClientApp.main(new String[]{});
+        LOG.info("Model starts");
     }
 
     @Override
     public void stop(BundleContext bundleContext) throws Exception {
-        LOG.info("Richclient stops");
+        LOG.info("Model stops");
     }
 }
