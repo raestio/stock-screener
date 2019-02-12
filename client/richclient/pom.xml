@@ -22,7 +22,12 @@
           <instructions>
             <Bundle-Activator>com.rasto.richclient.StockScreenerClientApp</Bundle-Activator>
             <Import-Package>
-              com.rasto.stockscreener.restclient,com.rasto.stockscreener.model,org.osgi.framework,javafx.*
+              com.rasto.stockscreener.restclient,
+              com.rasto.stockscreener.model,
+              org.osgi.framework,javafx.*,
+              org.springframework.*,
+              com.fasterxml.jackson.*,
+              org.apache.commons.*
             </Import-Package>
             <Export-Package>com.rasto.richclient.*</Export-Package>
             <Require-Capability>osgi.ee</Require-Capability>

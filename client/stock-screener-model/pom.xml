@@ -22,7 +22,7 @@
           <instructions>
             <Bundle-Activator>com.rasto.stockscreener.model.Activator</Bundle-Activator>
             <Require-Capability>osgi.ee</Require-Capability>
-            <Export-Package>com.rasto.stockscreener.model</Export-Package>
+            <Export-Package>com.rasto.stockscreener.model,com.fasterxml.jackson.*</Export-Package>
             <Import-Package>
               !com.fasterxml.*,org.osgi.framework
             </Import-Package>
