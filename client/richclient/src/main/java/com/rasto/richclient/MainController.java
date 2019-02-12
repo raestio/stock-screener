@@ -135,7 +135,7 @@ public class MainController {
     private void fillListWithFavourites() {
         clearStocksList();
         try {
-            var favs = stockScreenerRestClient.getFavourites();
+            List<Stock> favs = stockScreenerRestClient.getFavourites();
             fillListViewWithStocks(favs);
         } catch (UserNotLoggedInException e) {
             e.printStackTrace();
@@ -144,7 +144,7 @@ public class MainController {
 
     private void initializeStocksListView() {
         stocksListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        stocksListView.setCellFactory(param -> new ListCell<>() {
+        stocksListView.setCellFactory(param -> new ListCell<Stock>() {
             @Override
             protected void updateItem(Stock item, boolean empty) {
                 super.updateItem(item, empty);
@@ -217,7 +217,7 @@ public class MainController {
 
     private void initializeSearchButton() {
         searchButton.setOnMouseClicked(event -> {
-            var searchText = searchTextField.getText();
+            String searchText = searchTextField.getText();
             if (searchText != null && !searchText.trim().isEmpty()) {
                 List<StockSearch> stocks = new ArrayList<>();
                 try {

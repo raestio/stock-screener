@@ -13,7 +13,13 @@ public class StockScreenerClientApp implements BundleActivator {
     @Override
     public void start(BundleContext bundleContext) throws Exception {
         LOG.info("Richclient starts");
-        Platform.startup(() -> new App().start());
+        Platform.startup(new Runnable() {
+            @Override
+            public void run() {
+                LOG.info("Richclient window open");
+                new MainWindow();
+            }
+        });
     }
 
     @Override

@@ -22,8 +22,9 @@
           <instructions>
             <Bundle-Activator>com.rasto.richclient.StockScreenerClientApp</Bundle-Activator>
             <Import-Package>
-              !com.rasto.stockscreener.restclient.*,org.osgi.framework,javafx.*
+              com.rasto.stockscreener.restclient,com.rasto.stockscreener.model,org.osgi.framework,javafx.*
             </Import-Package>
+            <Export-Package>com.rasto.richclient.*</Export-Package>
             <Require-Capability>osgi.ee</Require-Capability>
           </instructions>
         </configuration>
@@ -32,18 +33,12 @@
   </build>
 
   <dependencies>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.osgi.core</artifactId>
-      <version>1.4.0</version>
-      <scope>provided</scope>
-    </dependency>
 
     <dependency>
       <groupId>stock-screener-client</groupId>
       <artifactId>stock-screener-rest-client</artifactId>
       <version>1.0.0</version>
-      <scope>provided</scope>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 </project>
