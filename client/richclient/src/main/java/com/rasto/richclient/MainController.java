@@ -80,13 +80,13 @@ public class MainController {
             stockScreenerRestClient.login("test", "test");
         } catch (AuthException e) {
             e.printStackTrace();
-        }/*
+        }
         initializeSearchButton();
         initializeClearButton();
         initializeStocksListView();
         initializeChartButtons();
         initializeFavouriteButton();
-        fillListWithFavourites();*/
+        fillListWithFavourites();
     }
 
     private void initializeChartButtons() {
