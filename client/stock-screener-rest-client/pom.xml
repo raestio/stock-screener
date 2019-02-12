@@ -21,9 +21,7 @@
         <configuration>
           <instructions>
             <Bundle-Activator>com.rasto.stockscreener.restclient.Activator</Bundle-Activator>
-            <Export-Package>com.rasto.stockscreener.restclient</Export-Package>
-            <Export-Package>com.rasto.stockscreener.restclient.core.request</Export-Package>
-            <Export-Package>com.rasto.stockscreener.restclient.core.response</Export-Package>
+            <Export-Package>com.rasto.stockscreener.restclient,com.rasto.stockscreener.restclient.core.request,com.rasto.stockscreener.restclient.core.response</Export-Package>
             <Require-Capability>osgi.ee</Require-Capability>
             <Import-Package>
               !com.fasterxml.*,org.osgi.framework
