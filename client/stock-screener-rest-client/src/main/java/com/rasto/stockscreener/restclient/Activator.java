@@ -1,5 +1,6 @@
 package com.rasto.stockscreener.restclient;
 
+import com.rasto.stockscreener.model.Stock;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -14,6 +15,9 @@ public class Activator implements BundleActivator {
     @Override
     public void start(BundleContext bundleContext) throws Exception {
         LOG.info("Rest client starts");
+        Stock stock = new Stock();
+        stock.setType("tmps");
+        LOG.info("Test stock: " + stock.getType());
     }
 
     @Override
